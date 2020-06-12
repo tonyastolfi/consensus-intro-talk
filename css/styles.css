@@ -1,0 +1,104 @@
+div {
+    border: 1px solid black;
+}
+
+#statemachine {
+    position: absolute;
+    left: 20%;
+    //right: 60%;
+    top: 30%;
+    //bottom: 30%;
+    height: 320px;
+    padding: 20px;
+    background-color: rgb(150, 175, 175);
+}
+
+#log {
+    position: relative;
+    white-space: nowrap;
+    left: 0px;
+    right: 0px;
+    border: none;
+}
+
+#log_crop {
+    position: absolute;
+    overflow: hidden;
+    left: 45%;
+    top: 40%;
+    right: 0px;
+    border: none;
+}
+
+#futurefog {
+    position: absolute;
+    right: 0px;
+    left: 80%;
+    top: 0px;
+    bottom: 0px;
+    background-image: linear-gradient(to right, rgba(255,255,255,0), white, white);
+    border: none;
+}
+
+.message {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    margin: 5px;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    white-space: nowrap;
+    background-color: rgb(210, 210, 230);
+    font-family: "Bitstream Vera Sans Mono", sans-serif;
+    font-size: 18pt;
+}
+
+.kvstore {
+    font-family: "Bitstream Vera Sans Mono", sans-serif;
+    font-size: 14pt;
+    border-collapse: collapse;
+}
+
+.kvstore td {
+    padding: 10px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.kvstore thead td {
+    font-weight: bold;
+    background-color: rgb(240,240,240);
+}
+
+#controls {
+    text-align: center;
+    border: none;
+}
+
+#controls #play_pause {
+    width: 48px;
+    height: 48px;
+}
+
+#controls .progress {
+    width: 640px;
+    height: 48px;
+}
+
+.attribution {
+    position: fixed;
+    bottom: 0px;
+    border: none;
+    font-style: italic;
+    font-size: 14pt;
+    text-align: center;
+}
+
+#backdrop {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
