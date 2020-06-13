@@ -119,8 +119,10 @@ function drawCluster() {
         ctx.fillStyle = 'rgb(150, 150, 230)';
     } else {
       if (s_avail[i]) {
+        $(sq[i]).css({filter: "blur(0)"});
         ctx.fillStyle = 'rgb(200, 255, 230)';
       } else {
+        $(sq[i]).css({filter: "blur(2px)"});
         ctx.fillStyle = 'rgb(255, 200, 200)';
       }
     }
