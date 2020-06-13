@@ -18,14 +18,49 @@
 
 
 <body>
-  <canvas id='backdrop'></canvas>
+  <canvas width="2880px" height="1800px" id='backdrop'></canvas>
+  <div id="clusterCenter">Cluster</div>
 
-  <script src="cluster.js"></script>
+  <img class="server" id="s1" src="icons/cpu.svg">
+  <img class="server" id="s2" src="icons/cpu.svg">
+  <img class="server" id="s3" src="icons/cpu.svg">
+  <img class="server" id="s4" src="icons/cpu.svg">
+  <img class="server" id="s5" src="icons/cpu.svg">
   
+  <img class="client" src="icons/monitor.svg">
+    
+  <img class="request" id="r1" src="icons/file-earmark-text.svg">
+  <img class="request" id="r2" src="icons/file-earmark-text.svg">
+  <img class="request" id="r3" src="icons/file-earmark-text.svg">
+  <img class="request" id="r4" src="icons/file-earmark-text.svg">
+  <img class="request" id="r5" src="icons/file-earmark-text.svg">
+  
+  <img class="nak" id="err1" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err2" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err3" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err4" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err5" src="icons/exclamation-triangle-fill.svg">
+
+  <img class="ack" id="ok1" src="icons/check-circle.svg">
+  <img class="ack" id="ok2" src="icons/check-circle.svg">
+  <img class="ack" id="ok3" src="icons/check-circle.svg">
+  <img class="ack" id="ok4" src="icons/check-circle.svg">
+  <img class="ack" id="ok5" src="icons/check-circle.svg">
+ 
+  <img class="nak" id="errClient" src="icons/exclamation-triangle-fill.svg">
+  <img class="ack" id="okClient" src="icons/check-circle.svg">
+ 
+  <!-------------------------------------------------------------------------------->
+
+
+  <!-------------------------------------------------------------------------------->
   <div id='controls'>
-    <img id="play_pause" src="icons/pause-fill.svg">
+    <img id="go" src="icons/caret-right-square.svg">
+    <img id="play_pause" src="icons/pause-fill.svg" style="visibility: hidden">
     <input class="progress" step=".001" type="range" min="0" max="100" value="0"></input>
   </div>
+
+  <script src="cluster.js"></script>
   <script src="controls.js"></script>
 
   <div class="attribution">

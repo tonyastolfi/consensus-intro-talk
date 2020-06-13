@@ -7,7 +7,7 @@ let log_frames = [];
 let sm_frames = [];
 let sm_obj = {lsn: 0};
 
-for (i=0; i<40; ++i) {
+for (i=0; i<100; ++i) {
   let k = keys[Math.floor(keys.length * Math.random())];
   let v = vals[Math.floor(vals.length * Math.random())];
   state[k] = [v, i];
@@ -22,12 +22,14 @@ for (i=0; i<40; ++i) {
 }
 
 
+let prev_lsn = 0;
 let animation = 
   anime({
     targets: '#log',
     keyframes: log_frames,
     update: function() {
-      let lsn = Math.max(0, Math.floor(8-document.getElementById('log').getBoundingClientRect().x / 92));
+      let lsn = Math.floor(animation.progress+0.3);//Math.max(0, Math.floor(8-document.getElementById('log').getBoundingClientRect().x / 92));
+      //      prev_lsn = lsn;
       console.log('update called: ' + lsn);
         let src = 
             "<table class='kvstore'><thead><td>Key</td><td>Value</td><td>LastModified</td></thead>";
