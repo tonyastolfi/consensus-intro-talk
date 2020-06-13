@@ -11,7 +11,7 @@ for (i=0; i<100; ++i) {
   let k = keys[Math.floor(keys.length * Math.random())];
   let v = vals[Math.floor(vals.length * Math.random())];
   state[k] = [v, i];
-  $('#log').append("<div class='message'>" + k.toString() + ": " + v.toString() + "</div>");
+  $('#log').append("<div class='log_slot'><div class='message'>" + k.toString() + ": " + v.toString() + "</div><div class='slot_label'>slot_" + i.toString() + "</div></div>");
   log.push({key: k, val: v});
   states.push({...state});
   log_frames.push({
@@ -35,7 +35,7 @@ let animation =
             "<table class='kvstore'><thead><td>Key</td><td>Value</td><td>LastModified</td></thead>";
       for (const k in states[lsn]) {
         src += "<tr><td>" + k.toString() + "</td><td>"
-          + states[lsn][k][0] + "</td><td>"
+          + states[lsn][k][0] + "</td><td class='slot_label'>slot_"
           + states[lsn][k][1] + "</td></tr>";
       }
       src += "</table>";

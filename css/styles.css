@@ -40,11 +40,27 @@ div {
     border: none;
 }
 
-.message {
+.log_slot {
+    border: none;
+    width: 80px;
     display: inline-block;
     position: relative;
-    width: 80px;
     margin: 5px;
+}
+
+.slot_label {
+    text-align: center;
+    border: none;
+    font-style: italic;
+}
+
+td.slot_label {
+    text-align: left;
+    font-style: italic;
+    font-family: serif;
+}
+
+.message {
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -125,10 +141,28 @@ div {
 }
 
 .request {
-    display: none;
+    opacity: 0;
     width: 64px;
     height: 64px;
     background-color: rgba(255,255,255,0);
+}
+
+div.request {
+    position: absolute;
+    display: inline-block;
+    //width: 48px;
+    height: 48px;
+    border: none;
+}
+
+div.request .message {
+    position: relative;
+    text-align: center;
+    padding: 8px;
+    white-space: nowrap;
+    background-color: rgb(210, 210, 230);
+    font-family: "Bitstream Vera Sans Mono", sans-serif;
+    font-size: 12pt;    
 }
 
 .ack {
@@ -149,4 +183,17 @@ div {
     left: 70%;
     width: 20%;
     visibility: hidden;
+}
+
+#show_quorums {
+    border: none;
+    position: fixed;
+    left: 16;
+    top: 16;
+    width: 100;
+    color: white;
+    background-color: blue;
+    padding: 8px;
+    border-radius: 8px;
+    font-family: sans-serif;
 }
