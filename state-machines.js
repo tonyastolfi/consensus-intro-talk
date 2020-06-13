@@ -15,7 +15,7 @@ for (i=0; i<100; ++i) {
   log.push({key: k, val: v});
   states.push({...state});
   log_frames.push({
-    translateX: -92 * (i + 1),
+    translateX: -90 * (i + 1),
     delay: 1000,
     duration: 500,
   });
