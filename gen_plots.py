@@ -42,21 +42,28 @@ a85_even = a85_even[:clip]
 a94 = a94[:clip]
 a97 = a97[:clip]
 
+plt.axes(ylabel='Availability (log10)')
+plt.axes(xlabel='Cluster Size (N)')
+plt.yscale('logit')
+
 plt.scatter(n_odd, a85_odd)
 plt.scatter(n_even, a85_even)
 plt.scatter(n_odd, a94)
 plt.scatter(n_odd, a97)
+
+plt.grid()
+#plt.ylim([0.5, 1.0])
 
 line_a85_odd, = plt.plot(n_odd, a85_odd, label='Available(Host)=85% (odd N)')
 line_a85_even, = plt.plot(n_even, a85_even, label='Available(Host)=85% (even N)')
 line_a94, = plt.plot(n_odd, a94, label='Available(Host)=94% (3 wk/yr)')
 line_a97, = plt.plot(n_odd, a97, label='Available(Host)=97% (1 wk/yr)')
 
-#ax = plt.axes(xscale='linear', yscale='log')
+#ax = plt.axes()
+
 #ax.grid();
 #ax.ticklabel_format(axis='y', style='plain')
 
 plt.legend(handles=[line_a85_odd, line_a85_even, line_a94, line_a97])
-plt.yscale('log')
 
 plt.show()

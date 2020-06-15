@@ -5,6 +5,8 @@ canvas.height = rect.height;
 
 let ctx = canvas.getContext('2d');
 
+$('.slot_label').css({opacity: 0});
+
 /*
 ctx.globalAlpha = 1.0;    
 let grd = ctx.createRadialGradient(
@@ -41,6 +43,7 @@ for (i=0; i<5; ++i) {
 }
 
 let s_avail = [true, true, true, true, true];
+let s_ack = [false, false, false, false, false];
 
 let quorum0 = [];
 let quorum1 = [];
@@ -226,24 +229,6 @@ function startRequest() {
     }
   }
 
-  let leaderReqX = sx[0] + reqSdx;
-  animation = anime.timeline({
-    easing: "linear",
-    update: function () {
-        progress_slider.value = animation.progress;
-    }
-  })
-    .add({
-      targets: ".request",
-      translateX: leaderReqX - (client_rect.x + client_rect.width),
-      duration: c2l_duration,
-    })
-    .add({
-      targets: "#ok1",
-      opacity: 1,
-      duration: 150,
-    }, c2l_duration);
-
   // Generate a set of random message transmission delays.
   //
   let l2f_duration = [0, 0];
@@ -257,6 +242,33 @@ function startRequest() {
     f2l_duration.push(f2l_d);
   }
   
+  let leaderReqX = sx[0] + reqSdx;
+  animation = anime.timeline({
+    easing: "linear",
+    update: function () {
+      progress_slider.value = animation.progress;
+      for (var i=1; i<=5; ++i) {
+        let this_ack_point = c2l_duration + l2f_duration[i];
+        s_ack[i-1] = (animation.progress * animation.duration / 100 >= this_ack_point);
+      }
+    }
+  })
+    .add({
+      targets: ".request",
+      translateX: leaderReqX - (client_rect.x + client_rect.width),
+      duration: c2l_duration,
+    })
+    .add({
+      targets: "#ok1",
+      opacity: 1,
+      duration: 150,
+    }, c2l_duration)
+    .add({
+      targets: ".slot_label",
+      opacity: 1,
+      duration: 100,
+    });
+
   // Figure out the time when the leader knows the result.
   //
   let quorum_delays = [];
@@ -380,7 +392,7 @@ document.getElementById("show_quorums").onclick = function () {
   //  quorum0 = qs[Math.floor(Math.random() * qs.length)];
   quorum0 = [];
   for (var i=0; i<5; ++i) {
-    if (s_avail[i]) {
+    if (s_ack[i]) {
       quorum0.push(i);
     }
   }

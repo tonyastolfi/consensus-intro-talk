@@ -1,0 +1,178 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Recovery (Leader Fail-over)</title>
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  
+  <script src="anime-master/lib/anime.min.js"></script>
+  <script src="jquery-3.x-git.min.js"></script>
+  
+  <style>
+  </style>
+  
+</head>
+
+
+<body>
+  <div id="protocol">
+    <div class="invar" id="epoch_invar">
+      <div class="heading">Invariants for Epochs</div>
+      <ul>
+        <li>At <i>most</i> 1 Leader per Epoch<br>(<b>Mutual Exclusion</b>)</li>
+        <li>Epoch number increases over time<br>(<b>Monotonicity</b>)</li>
+      </ul>
+    </div>
+    <div class="invar" id="leader_invar">
+      <div class="heading">Becoming a Leader</div>
+      <ul>
+        <li>Wait until you believe Leader is dead</li>
+        <li>Start new Epoch <i>e</i> (&gt; any in which you voted) by asking for votes</li>
+        <li>Assume control of Epoch <i>e</i>  on receiving support from a quorum</li>
+      </ul>
+    </div>
+
+    <div class="invar" id="voting_invar">
+      <div class="heading">Rules for Voting</div>
+      <ul>
+        <li>Vote at most once per Epoch</li>
+        <li>Stop following old Leader when you vote</li>
+        <li>Never vote in an old Epoch</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id='controls'>
+    <img id="play_pause" src="icons/play-fill.svg">
+    <input class="progress" step=".001" type="range" min="0" max="100" value="0"></input>
+  </div>
+  
+  <table id="cluster_timeline" border=0 width=100% cellspacing=20>
+    <tr class="top_row">
+      <td class="member_col"></td>
+      <td class="epoch1_col" id="epoch1_elem"><div class="marker_parent"><div class="epoch_marker"></div>&nbsp;&nbsp;epoch 1</div></td>
+      <td class="epoch2_col" id="epoch2_elem"><div class="marker_parent"><div class="epoch_marker"></div>&nbsp;&nbsp;epoch 2</div></td>
+      <td class="epoch3_col" id="epoch3_elem"><div class="marker_parent"><div class="epoch_marker"></div>&nbsp;&nbsp;epoch 3</div></td>
+      <td class="future_col" rowspan=6><div class="fog"></div></td>
+    </tr>
+
+    <tr class="s1_row">
+      <td class="member_col">
+        <div class="leadership" id="s1_leader"><img class="server" id="s1" src="icons/cpu.svg"><div class="hline"></div></div>
+      </td>
+      <td class="epoch1_col">
+        <div class="cell">
+          <div class="request r1" id="s1_x4"><div class="message">X: 4</div><div class="slot_label">slot_9</div></div>
+          <div class="request r1" id="s1_x6"><div class="message">X: 6</div><div class="slot_label">slot_9</div></div>
+        </div>
+      </td>
+      <td class="epoch2_col"></td>
+      <td class="epoch3_col"></td>
+    </tr>
+
+    <tr class="s2_row">
+      <td class="member_col">
+        <div class="leadership" id="s2_leader"><img class="server" id="s2" src="icons/cpu.svg"><div class="hline"></div></div>
+      </td>
+      <td class="epoch1_col">
+        <div class="cell">
+          <div class="request r1" id="s2_x4"><div class="message">X: 4</div><div class="slot_label">slot_9</div></div>
+          <div class="request r1" id="s2_x6"><div class="message">X: 6</div><div class="slot_label">slot_9</div></div>
+        </div>
+      </td>
+      <td class="epoch2_col"></td>
+      <td class="epoch3_col"></td>
+    </tr>
+
+    <tr class="s3_row">
+      <td class="member_col">
+        <div class="leadership" id="s3_leader"><img class="server" id="s3" src="icons/cpu.svg"><div class="hline"></div></div>
+      </td>
+      <td class="epoch1_col"></td>
+      <td class="epoch2_col"></td>
+      <td class="epoch3_col">
+        <div class="cell">
+          <div class="request r3" id="s3_x6"><div class="message">X: 6</div><div class="slot_label">slot_9</div></div>
+        </div>
+      </td>
+    </tr>
+    
+    <tr class="s4_row">
+      <td class="member_col">
+        <div class="leadership" id="s4_leader"><img class="server" id="s4" src="icons/cpu.svg"><div class="hline"></div></div>
+      </td>
+      <td class="epoch1_col"></td>
+      <td class="epoch2_col">
+        <div class="cell">
+          <div class="request r4" id="s4_x6"><div class="message">X: 6</div><div class="slot_label">slot_9</div></div>
+        </div>
+      </td>
+      <td class="epoch3_col"></td>
+    </tr>
+    
+    <tr class="s5_row">
+      <td class="member_col">
+        <div class="leadership" id="s5_leader"><img class="server" id="s5" src="icons/cpu.svg"><div class="hline"></div></div>
+      </td>
+      <td class="epoch1_col"></td>
+      <td class="epoch2_col"></td>
+      <td class="epoch3_col"></td>
+    </tr>
+
+  </table>
+  <!--
+  <div id="show_quorums">Show Quorums</div>
+  <canvas width="2880px" height="1800px" id='backdrop'></canvas>
+  <div id="clusterCenter">Cluster</div>
+
+  <img class="server" id="s1" src="icons/cpu.svg">
+  <img class="server" id="s2" src="icons/cpu.svg">
+  <img class="server" id="s3" src="icons/cpu.svg">
+  <img class="server" id="s4" src="icons/cpu.svg">
+  <img class="server" id="s5" src="icons/cpu.svg">
+  
+  <img class="client" src="icons/monitor.svg">
+
+  <div class="request" id="r1"><div class='message'>X: 4</div><div class="slot_label">slot_9</div></div>
+  <div class="request" id="r2"><div class='message'>X: 4</div><div class="slot_label">slot_9</div></div>
+  <div class="request" id="r3"><div class='message'>X: 4</div><div class="slot_label">slot_9</div></div>
+  <div class="request" id="r4"><div class='message'>X: 4</div><div class="slot_label">slot_9</div></div>
+  <div class="request" id="r5"><div class='message'>X: 4</div><div class="slot_label">slot_9</div></div>
+
+  <img class="request" id="r1" src="icons/file-earmark-text.svg">
+  <img class="request" id="r2" src="icons/file-earmark-text.svg">
+  <img class="request" id="r3" src="icons/file-earmark-text.svg">
+  <img class="request" id="r4" src="icons/file-earmark-text.svg">
+  <img class="request" id="r5" src="icons/file-earmark-text.svg">
+  
+  <img class="nak" id="err1" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err2" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err3" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err4" src="icons/exclamation-triangle-fill.svg">
+  <img class="nak" id="err5" src="icons/exclamation-triangle-fill.svg">
+
+  <img class="ack" id="ok1" src="icons/check.svg">
+  <img class="ack" id="ok2" src="icons/check.svg">
+  <img class="ack" id="ok3" src="icons/check.svg">
+  <img class="ack" id="ok4" src="icons/check.svg">
+  <img class="ack" id="ok5" src="icons/check.svg">
+ 
+  <img class="nak" id="errClient" src="icons/exclamation-triangle-fill.svg">
+  <img class="ack" id="okClient" src="icons/check-circle.svg">
+  -->
+ 
+  <!-------------------------------------------------------------------------------->
+
+
+  <!-------------------------------------------------------------------------------->
+
+  <script src="controls.js"></script>
+  <script src="recovery-simple.js"></script>
+
+  <div class="attribution">
+    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>  
+</body>
+</html>
