@@ -28,7 +28,11 @@ let animation = anime.timeline({
   update: function() {
     progress_slider.value = animation.progress;
     for (var i=1; i<=5; ++i) {
-      $('.s' + i.toString() + "_row").css({filter: "blur(" + s_blur[i].vl.toString() + "px)"});
+      let lev = (5-s_blur[i].vl)/5;
+      $('.s' + i.toString() + "_row").css({
+        filter: "blur(" + (s_blur[i].vl / 3).toString() + "px)",
+        opacity: lev * 0.7 + 0.3,
+      });
     }
   },
 })
