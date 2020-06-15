@@ -21,6 +21,19 @@ for (i=0; i<100; ++i) {
   });
 }
 
+function update_state() {
+  let lsn = Math.floor(animation.progress+0.3);
+  console.log('update called: ' + lsn);
+  let src = 
+      "<table class='kvstore'><thead><td>Key</td><td>Value</td><td>LastModified</td></thead>";
+  for (const k in states[lsn]) {
+    src += "<tr><td>" + k.toString() + "</td><td>"
+      + states[lsn][k][0] + "</td><td class='slot_label'>slot_"
+      + states[lsn][k][1] + "</td></tr>";
+  }
+  src += "</table>";
+  document.getElementById("statemachine").innerHTML = src;
+}
 
 let prev_lsn = 0;
 let animation = 
@@ -28,20 +41,12 @@ let animation =
     targets: '#log',
     keyframes: log_frames,
     update: function() {
-      let lsn = Math.floor(animation.progress+0.3);//Math.max(0, Math.floor(8-document.getElementById('log').getBoundingClientRect().x / 92));
-      //      prev_lsn = lsn;
-      console.log('update called: ' + lsn);
-        let src = 
-            "<table class='kvstore'><thead><td>Key</td><td>Value</td><td>LastModified</td></thead>";
-      for (const k in states[lsn]) {
-        src += "<tr><td>" + k.toString() + "</td><td>"
-          + states[lsn][k][0] + "</td><td class='slot_label'>slot_"
-          + states[lsn][k][1] + "</td></tr>";
-      }
-      src += "</table>";
-      document.getElementById("statemachine").innerHTML = src;
+      update_state();
       if (!scrubbing) {
         progress_slider.value = animation.progress;
       }
     },
   });
+
+animation.pause();
+update_state();

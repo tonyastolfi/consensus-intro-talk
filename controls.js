@@ -1,4 +1,4 @@
-let paused = false;
+let paused = true;
 let scrubbing = false;
 let play_pause_button = document.querySelector('#play_pause');
 play_pause_button.onclick = function() {
