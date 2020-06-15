@@ -21,7 +21,7 @@ for (var e=1; e<= 5; ++e) {
   ex.push(document.querySelector("#epoch" + e.toString() + "_elem").getBoundingClientRect().x);
 }
 
-let step_delay = 750;
+let step_delay = 1400;
 
 let animation = anime.timeline({
   easing: "linear",
@@ -61,6 +61,11 @@ let animation = anime.timeline({
       opacity: 1,
       duration: 100,
     }, 3 * step_delay)
+    .add({
+      targets: "#s4_leader",
+      "border-color": "#ddd",
+      duration: 100,
+    }, 3 * step_delay)
 // 4
     .add({
       targets: "#s4_leader",
@@ -88,6 +93,11 @@ let animation = anime.timeline({
     .add({
       targets: ".epoch3_col",
       opacity: 1,
+      duration: 100,
+    }, 7 * step_delay)
+    .add({
+      targets: "#s3_leader",
+      "border-color": "#ddd",
       duration: 100,
     }, 7 * step_delay)
 // 7
@@ -120,19 +130,19 @@ let animation = anime.timeline({
     }, 10 * step_delay)
 // 10
     .add({
-      targets: s_blur[2],
+      targets: s_blur[3],
       vl: 5,
+      duration: 100,
+    }, 11 * step_delay)
+    .add({
+      targets: "#s3_leader",
+      "border-color": "#fff",
       duration: 100,
     }, 11 * step_delay)
 // 11
     .add({
-      targets: s_blur[3],
+      targets: s_blur[2],
       vl: 5,
-      duration: 100,
-    }, 12 * step_delay)
-    .add({
-      targets: "#s3_leader",
-      "border-color": "#fff",
       duration: 100,
     }, 12 * step_delay)
 // 11.1
@@ -143,14 +153,19 @@ let animation = anime.timeline({
     }, 13 * step_delay)
 // 11.2
     .add({
-      targets: s_blur[1],
-      vl: 0,
+      targets: ".epoch4_col",
+      opacity: 1,
+      duration: 100,
+    }, 14 * step_delay)
+    .add({
+      targets: "#s4_leader",
+      "border-color": "#ddd",
       duration: 100,
     }, 14 * step_delay)
 // 11.5
     .add({
-      targets: ".epoch4_col",
-      opacity: 1,
+      targets: s_blur[1],
+      vl: 0,
       duration: 100,
     }, 15 * step_delay)
 // 12
@@ -165,6 +180,125 @@ let animation = anime.timeline({
       translateX: ex[4] - ex[2],
       duration: 100,
     }, 17 * step_delay)
+// 14
+    .add({
+      targets: "#s5_x6",
+      opacity: 1,
+      duration: 100,
+    }, 18 * step_delay)
+    .add({
+      targets: "#s5_x6",
+      translateX: 50,
+      duration: 100,
+    }, 18 * step_delay)
+// 15
+    .add({
+      targets: s_blur[4],
+      vl: 5,
+      duration: 100,
+    }, 19 * step_delay)
+    .add({
+      targets: "#s4_leader",
+      "border-color": "#fff",
+      duration: 100,
+    }, 19 * step_delay)
+// 15.25
+    .add({
+      targets: s_blur[2],
+      vl: 0,
+      duration: 100,
+    }, 20 * step_delay)
+    .add({
+      targets: s_blur[3],
+      vl: 0,
+      duration: 100,
+    }, 21 * step_delay)
+// 15.5
+    .add({
+      targets: ".epoch5_col",
+      opacity: 1,
+      duration: 100,
+    }, 22 * step_delay)
+    .add({
+      targets: "#s2_leader",
+      "border-color": "#ddd",
+      duration: 100,
+    }, 22 * step_delay)
+// 16
+    .add({
+      targets: "#s2_leader",
+      "border-color": "#000",
+      duration: 100,
+    }, 23 * step_delay)
+// 17
+    .add({
+      targets: "#s2_x5",
+      translateX: ex[5] - ex[3],
+      duration: 100,
+    }, 24 * step_delay)
+    .add({
+      targets: "#s2_x6",
+      translateX: ex[5] - ex[3],
+      duration: 100,
+    }, 24 * step_delay)
+    .add({
+      targets: "#s2_x5",
+      opacity: 0,
+      duration: 100,
+    }, 24 * step_delay)
+    .add({
+      targets: "#s2_x6",
+      opacity: 1,
+      duration: 100,
+    }, 24 * step_delay)
+// 18
+    .add({
+      targets: "#s5_x6",
+      translateX: ex[5] - ex[4] + 50,
+      duration: 100,
+    }, 25 * step_delay)
+// 19
+    .add({
+      targets: "#s3_x5",
+      translateX: ex[5] - ex[3] + 100,
+      duration: 100,
+    }, 26 * step_delay)
+    .add({
+      targets: "#s3_x6",
+      translateX: ex[5] - ex[3] + 100,
+      duration: 100,
+    }, 26 * step_delay)
+    .add({
+      targets: "#s3_x5",
+      opacity: 0,
+      duration: 100,
+    }, 26 * step_delay)
+    .add({
+      targets: "#s3_x6",
+      opacity: 1,
+      duration: 100,
+    }, 26 * step_delay)
+// 20
+    .add({
+      targets: "#s1_x4",
+      translateX: ex[5] - ex[1] + 150,
+      duration: 100,
+    }, 27 * step_delay)
+    .add({
+      targets: "#s1_x6",
+      translateX: ex[5] - ex[1] + 150,
+      duration: 100,
+    }, 27 * step_delay)
+    .add({
+      targets: "#s1_x4",
+      opacity: 0,
+      duration: 100,
+    }, 27 * step_delay)
+    .add({
+      targets: "#s1_x6",
+      opacity: 1,
+      duration: 100,
+    }, 27 * step_delay)
 
 
 

@@ -203,30 +203,30 @@ div.request .message {
 .invar {
     z-index: 100;
     font-family: sans-serif;
-    font-size: 12pt;
+    font-size: 16pt;
     position: fixed;
     display: block;
     padding: 4px;
-    width: 320px;
+    width: 400px;
     top: 70px;
     background-color: rgb(230,210,160);
     border-radius: 10px;
 }
 
 #epoch_invar {
-    left: 7%;
+    left: 2%;
 }
 
 #leader_invar {
-    left: 37%;
+    left: 36%;
 }
 
 #voting_invar {
-    left: 67%;
+    left: 70%;
 }
 
 .heading {
-    font-size: 14pt;
+    font-size: 16pt;
     font-weight: bold;
     border: none;
     background-color: rgb(170,150,100);
@@ -252,7 +252,7 @@ div.request .message {
 .leadership {
     position: relative;
     border-radius: 32px;
-    border: 4px solid;
+    border: 8px solid;
     border-color: #fff;
 }
 
@@ -268,8 +268,8 @@ div.request .message {
 #cluster_timeline .server {
     display: inline-block;
     position: relative;
-    height: 75px;
-    width: 75px;
+    height: 100px;
+    width: 100px;
     margin: 16px;
 }
 
@@ -369,4 +369,10 @@ div.request .message {
     position: absolute;
     top: -24px;
     left: 24px;
+    z-index: 105;
+    width: 80px;
+}
+#cluster_timeline .message {
+    z-index: 105;
+    font-size: 20pt;
 }
