@@ -59,6 +59,11 @@ let animation = anime.timeline({
       translateX: 100,
       duration: 100,
     }, 2 * step_delay)
+    .add({
+      targets: "#s2_x6",
+      translateX: 100,
+      duration: 100,
+    }, 2 * step_delay)
 // 4
     .add({
       targets: s_blur[1],
