@@ -7,7 +7,11 @@ canvas.height = rect.height;
 
 let ctx = canvas.getContext('2d');
 
-$('.slot_label').css({opacity: 0});
+$('.slot_label').css({
+  opacity: 0,
+  'background-color': "rgba(255,255,255,50)",
+  'border-radius': "8px",
+});
 
 /*
 ctx.globalAlpha = 1.0;    
@@ -269,7 +273,7 @@ function startRequest() {
       targets: ".slot_label",
       opacity: 1,
       duration: 100,
-    });
+    }, c2l_duration-150);
 
   // Figure out the time when the leader knows the result.
   //
