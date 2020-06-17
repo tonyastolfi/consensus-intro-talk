@@ -1,3 +1,5 @@
+// Copyright 2020 Tony Astolfi
+//
 let paused = true;
 let scrubbing = false;
 let play_pause_button = document.querySelector('#play_pause');

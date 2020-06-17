@@ -1,3 +1,5 @@
+# Copyright 2020 Tony Astolfi
+#
 import csv
 import matplotlib.pyplot as plt
 import matplotlib

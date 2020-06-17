@@ -1,3 +1,5 @@
+// Copyright 2020 Tony Astolfi
+//
 let canvas = document.getElementById('backdrop');
 let rect = canvas.getBoundingClientRect();
 canvas.width = rect.width;

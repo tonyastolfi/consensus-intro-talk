@@ -1,3 +1,5 @@
+// Copyright 2020 Tony Astolfi
+//
 let keys = ['A','B','C','X','Y','Z'];
 let vals = [0, 1, 2, 3, 4, 5, 6, 7];
 let log = [];

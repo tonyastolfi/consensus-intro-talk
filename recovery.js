@@ -1,3 +1,5 @@
+// Copyright 2020 Tony Astolfi
+//
 let canvas = document.getElementById('backdrop');
 let show_invars = false;
 let protocol_card = document.getElementById('protocol');
