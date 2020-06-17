@@ -370,7 +370,7 @@ document.getElementById("go").onclick = function () {
   document.querySelector("#progress").value = 0;
 };
 
-document.getElementById("show_quorums").onclick = function () {
+function showRandomQuorum() {
   let qs = [
     [0, 1, 2],
     [0, 1, 3],
@@ -389,7 +389,6 @@ document.getElementById("show_quorums").onclick = function () {
     [0, 1, 2, 3],
     [0, 1, 2, 3, 4],
   ];
-  //  quorum0 = qs[Math.floor(Math.random() * qs.length)];
   quorum0 = [];
   for (var i=0; i<5; ++i) {
     if (s_ack[i]) {
@@ -398,11 +397,22 @@ document.getElementById("show_quorums").onclick = function () {
   }
   quorum1 = qs[Math.floor(Math.random() * qs.length)];
   drawCluster();
-};
+}
 
+//document.getElementById("show_quorums").onclick = function () {
+//  showRandomQuorum();
+//};
 
-document.getElementById("show_quorums").ondblclick = function() {
+document.getElementById("show_quorums").addEventListener('mousedown', function(e) {
+  e.preventDefault();
+  showRandomQuorum();
+  return false;
+});
+
+document.getElementById("show_quorums").addEventListener('contextmenu', function(e) {
+  e.preventDefault();
   quorum0 = [];
   quorum1 = [];
   drawCluster();
-};
+  return false;
+});
