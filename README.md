@@ -4,9 +4,7 @@ This repo contains materials for a presentation I created to introduce
 a generally technical audience to the topic of fail-stop
 (non-Byzantine) distributed consensus algorithms.
 
-The slides can be accessed directly from [here](
-https://storage.googleapis.com/consensus-intro-talk/html/slides/index.html
-).
+The slides can be accessed directly from [here](https://storage.googleapis.com/consensus-intro-talk/slides.pdf).
 
 There are three interactive visualizations/animations included:
 
